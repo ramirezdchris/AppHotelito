@@ -1,6 +1,7 @@
 package com.example.hotelitoreservacionfacilito.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelitoreservacionfacilito.R;
+import com.example.hotelitoreservacionfacilito.app.administrador.ClienteCrud;
 import com.example.hotelitoreservacionfacilito.models.Cliente;
 
 import java.util.List;
@@ -44,17 +47,27 @@ public class RecyclerClientes extends RecyclerView.Adapter<RecyclerClientes.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        CardView cardView;
         ImageView iVFoto;
         TextView tvNombreCliente, tvTelefono;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.cardView);
             iVFoto = itemView.findViewById(R.id.iVFoto);
             tvNombreCliente = itemView.findViewById(R.id.tvNombreCliente);
             tvTelefono = itemView.findViewById(R.id.tvTelefono);
         }
 
         public void asignarDatos(Cliente cliente){
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ClienteCrud.class);
+                    i.putExtra("id", cliente.getIdCliente());
+                    context.startActivity(i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
+            });
             iVFoto.setImageResource(R.drawable.logocircle);
             tvNombreCliente.setText(cliente.getNombre() + " " +cliente.getApellido());
             tvTelefono.setText(cliente.getCorreo());

@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".app.administrador.Clientes"></activity>
+        <activity android:name=".app.administrador.ClienteCrud"></activity>
+        <activity android:name=".app.administrador.Clientes" />
         <activity android:name=".app.cliente.PrincipalCliente" />
         <activity android:name=".app.recepcionista.PrincipalRecepcionista" />
         <activity android:name=".app.administrador.PrincipalAdministrador" />
